@@ -7,6 +7,14 @@ const mongoose = require('mongoose');
 const backendRoutes = express.Router();
 
 const PORT = 8080;
+/*
+user
+address
+product
+category
+order
+comments
+*/
 
 mongoose
     .connect(`${process.env.MONGO_URI}`, {
