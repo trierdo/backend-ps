@@ -18,7 +18,8 @@ comments
 
 mongoose
     .connect(`${process.env.MONGO_URI}`, {
-        useNewUrlParser: true
+        useNewUrlParser: true,
+        useUnifiedTopology: true
     })
     .then(x => {
         console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
@@ -42,6 +43,9 @@ app.use('/', backendRoutes);
 app.listen(PORT, function () {
     console.log("Server should be running on Port: " + PORT);
 });
+
+
+let MasterData = require('./data/sample-data.js');
 
 module.exports = app;
 
