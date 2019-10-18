@@ -7,6 +7,7 @@ let Address = new Schema({
         type: String
     },
     type: {
+        type: String,
         enum: ['home', 'invoice', 'pickup']
     },
     street: {

@@ -20,7 +20,6 @@ let Product = new Schema({
     amount: {
         type: Number
     },
-    pic_list: [String],
     unit: {
         type: String,
         enum: ['g', 'kg', 'pound', 'l', 'ml', 'pcs']
@@ -32,12 +31,12 @@ let Product = new Schema({
         { type: Schema.Types.ObjectId, ref: 'Category' }
     ,
     rating: [{
-        Rating: Number,
-        ref_rated_by_user: 
+        rating: Number,
+        ref_user: 
             { type: Schema.Types.ObjectId, ref: 'User' }
         
-    }]
-    
+    }],
+    pic_list: [String]
     
 });
 

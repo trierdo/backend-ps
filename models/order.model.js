@@ -9,7 +9,6 @@ let Order = new Schema({
     order_id: {
         type: String
     },
-   
     description: {
         type: String
     },
