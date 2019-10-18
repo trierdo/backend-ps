@@ -5,6 +5,9 @@ const Schema = mongoose.Schema;
 
 let User = new Schema({
     //we do not need to define the _id to identify the asset, mongoose does this automatically
+    _id: {
+        type: String
+    },
     user_first_name: {
         type: String
     },
@@ -20,9 +23,9 @@ let User = new Schema({
     user_phone: {
         type: String
     },
-    ref_fav_products:
-        [{ type: Schema.Types.ObjectId, ref: 'Product' }],
-  
+    ref_fav_products: [
+        { type: Schema.Types.ObjectId, ref: 'Product' }
+    ]  
 });
 
 module.exports = mongoose.model('User', User);
