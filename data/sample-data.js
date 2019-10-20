@@ -41,8 +41,8 @@ const product12 = new mongoose.mongo.ObjectId();
 const product13 = new mongoose.mongo.ObjectId();
 const product14 = new mongoose.mongo.ObjectId();
 
-const order1 = new mongoose.mongo.ObjectId();
-const comment1 = new mongoose.mongo.ObjectId();
+//const order1 = new mongoose.mongo.ObjectId();
+//const comment1 = new mongoose.mongo.ObjectId();
 
 
 /* CATEGORIES / Goods Groups ################################### */
@@ -337,7 +337,7 @@ const products = [{
 
 
 
-/* ORDERS ############################################################### */
+/* example ORDERS ############################################################### 
 
 const order = {
     _id: order1,
@@ -357,7 +357,7 @@ const order = {
     total_price: 850
 }
 
-/* COMMENTS ################################################################ */
+/* example COMMENTS ############################################################### 
 
 let comments = [{
     _id: comment1,
@@ -369,8 +369,9 @@ let comments = [{
     timestamp: 1571317091372
 }];
 
+*/
 
-/* create categories with products ################################################################# */
+/* create categories with products ######################################### */
 
 categories.forEach((category) => {
 
