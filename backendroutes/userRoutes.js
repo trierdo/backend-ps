@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 
-userRoutes.post("/login", (req, res) => {
+userRoutes.route("/login").post((req, res) => {
     const theUsername = req.body.username;
     const thePassword = req.body.password;
   
@@ -32,7 +32,7 @@ userRoutes.post("/login", (req, res) => {
   });
 
 
-  userRoutes.post("/signup", (req, res) => {
+  userRoutes.route("/signup").post((req, res) => {
     const user_name = req.body.user_name;
     const user_password = req.body.user_password;
     const user_first_name = req.body.user_first_name;
@@ -70,7 +70,7 @@ userRoutes.post("/login", (req, res) => {
       })
   });
 
-  userRoutes.get('/getUserData/:userName', (req, res) => {
+  userRoutes.route('/getUserData/:userName').get((req, res) => {
     User.findOne({"user_name": req.params.userName})
     .then(userDataFromDB => {
         console.log(userDataFromDB);
@@ -82,7 +82,7 @@ userRoutes.post("/login", (req, res) => {
   });
 
 
-  userRoutes.post('/editUser/:userID', (req, res) => {
+  userRoutes.route('/editUser/:userID').post((req, res) => {
     const { user_name, user_first_name, user_last_name, user_password, user_email, user_phone } = req.body;
     console.log("log: " + req.params.userID);
     User.update({_id: req.params.userID}, { $set: {user_name, user_first_name, user_last_name, user_password, user_email, user_phone }})

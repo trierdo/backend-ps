@@ -1,9 +1,10 @@
 const express = require('express');
 const commentRoutes = express.Router();
 const Comment = require("../models/comments.model");
+const ObjectId = require('mongodb').ObjectID;
 
-commentRoutes.get('user/getAllComments/:userID', (req, res) => {
-    Comment.find({"ref_user" : req.params.userID})
+commentRoutes.route('/user/getAllComments/:userID').get((req, res) => {
+    Comment.find({"ref_user" : ObjectId(req.params.userID)})
     .then(commentDataFromDB => {
         console.log(commentDataFromDB);
         res.status(200).json({'addressData': commentDataFromDB});
@@ -13,8 +14,8 @@ commentRoutes.get('user/getAllComments/:userID', (req, res) => {
     })
   });
 
-  commentRoutes.get('product/getAllComments/:productID', (req, res) => {
-    Comment.find({"ref_product" : req.params.productID})
+  commentRoutes.route('/product/getAllComments/:productID').get((req, res) => {
+    Comment.find({"ref_product" : ObjectId(req.params.productID)})
     .then(commentDataFromDB => {
         console.log(commentDataFromDB);
         res.status(200).json({'addressData': commentDataFromDB});
@@ -25,11 +26,11 @@ commentRoutes.get('user/getAllComments/:userID', (req, res) => {
   });
 
 
-  commentRoutes.post("/createComment/:userID", (req, res) => {
+  commentRoutes.route("/createComment/:userID").post((req, res) => {
     const title = req.body.title;
     const description = req.body.description;
-    const ref_user = req.params.userID;
-    const ref_product = req.body.ref_product;
+    const ref_user = ObjectId(req.params.userID);
+    const ref_product = ObjectId(req.body.ref_product);
    
     Comment.create({
         title,
@@ -50,7 +51,7 @@ commentRoutes.get('user/getAllComments/:userID', (req, res) => {
 
 
 
-  commentRoutes.post('/deleteComment/:commentId', (req, res, next) => {
+  commentRoutes.route('/deleteComment/:commentId').post((req, res, next) => {
     Comment.findByIdAndRemove(req.params.commentId)
     .then()
     .catch((error) => {
@@ -59,7 +60,7 @@ commentRoutes.get('user/getAllComments/:userID', (req, res) => {
   });
 
 
-  commentRoutes.post('/editComment/:commentId', (req, res) => {
+  commentRoutes.route('/editComment/:commentId').post((req, res) => {
     const { title, description } = req.body;
     Comment.update({_id: req.params.commentId}, { $set: {title, description}})
     .then((response) => {

@@ -42,9 +42,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/', backendRoutes);
-app.use('user/', userRoutes);
-app.use('address/', addressRoutes);
-app.use('comment/', commentRoutes);
+app.use('/user', userRoutes);
+app.use('/address', addressRoutes);
+app.use('/comment', commentRoutes);
 
 app.listen(PORT, function () {
     console.log("Server should be running on Port: " + PORT);
