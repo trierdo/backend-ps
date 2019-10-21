@@ -65,4 +65,8 @@ commentRoutes.get('user/getAllComments/:userID', (req, res) => {
       console.log(error);
     })
   });
+
+  
+
+module.exports = commentRoutes;
   
