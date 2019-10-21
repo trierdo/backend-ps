@@ -6,7 +6,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const backendRoutes = express.Router();
 
-const PORT = 8080;
+const PORT = process.env.PORT;
 /*
 user
 address
