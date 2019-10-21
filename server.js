@@ -5,6 +5,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const backendRoutes = express.Router();
+const userRoutes = require('./backendroutes/userRoutes');
+const addressRoutes = require('./backendroutes/addressRoutes');
+const commentRoutes = require('./backendroutes/commentRoutes');
 const productRoutes = require('./backendroutes/productRoute')
 const orderRoutes = require('./backendroutes/orderRoute')
 const categoryRoutes = require('./backendroutes/categoryRoute')
@@ -36,13 +39,16 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('public'));  
 
+app.use('/', backendRoutes);
+app.use('/user', userRoutes);
+app.use('/address', addressRoutes);
+app.use('/comment', commentRoutes);
 app.use('/product', productRoutes);
 app.use('/order', orderRoutes);
 app.use('/category', categoryRoutes);
 app.listen(PORT, function () {
     console.log("Server should be running on Port: " + PORT);
 });
-
 
 let MasterData = require('./data/sample-data.js');
 
