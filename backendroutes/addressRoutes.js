@@ -40,12 +40,12 @@ addressRoutes.get('/getAddressData/:userID', (req, res) => {
         pickup_station_id,
         pickup_ident_no
         })
-        return res.status(200).json({ 'success': 'registration was successfull' });
-         
-      })
+        .then(() => { return res.status(200).json({ 'success': 'registration was successfull' });
+          })
       .catch(error => {
         console.log(error);
-  });
+  })
+});
 
   // Bisher gibt es nur eine Addresse für einen User
   addressRoutes.post('/editAdress/:userID', (req, res) => {

@@ -37,12 +37,16 @@ commentRoutes.get('user/getAllComments/:userID', (req, res) => {
         ref_user,
         ref_product
         })
-        return res.status(200).json({ 'success': 'registration was successfull' });
+        .then(() =>{
+            return res.status(200).json({ 'success': 'registration was successfull' });
+        })
+        
          
-      })
+
       .catch(error => {
         console.log(error);
-  });
+  })
+});
 
 
 
