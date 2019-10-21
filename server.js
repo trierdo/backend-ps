@@ -9,7 +9,7 @@ import {userRoutes} from './backendroutes/userRoutes'
 import {addressRoutes} from './backendroutes/addressRoutes'
 import {commentRoutes} from './backendroutes/commentRoutes'
 
-const PORT = 8080;
+const PORT = process.env.PORT;
 /*
 user
 address
@@ -21,7 +21,8 @@ comments
 
 mongoose
     .connect(`${process.env.MONGO_URI}`, {
-        useNewUrlParser: true
+        useNewUrlParser: true,
+        useUnifiedTopology: true
     })
     .then(x => {
         console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
@@ -49,6 +50,7 @@ app.listen(PORT, function () {
     console.log("Server should be running on Port: " + PORT);
 });
 
+let MasterData = require('./data/sample-data.js');
 
 module.exports = app;
 
