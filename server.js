@@ -34,7 +34,7 @@ mongoose
 
 app.use(cors());
 app.use(bodyParser.json());
-
+app.use(express.static('public'));  
 
 app.use('/product', productRoutes);
 app.use('/order', orderRoutes);
