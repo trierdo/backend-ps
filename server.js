@@ -5,6 +5,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const backendRoutes = express.Router();
+import {userRoutes} from './backendroutes/userRoutes'
+import {addressRoutes} from './backendroutes/addressRoutes'
+import {commentRoutes} from './backendroutes/commentRoutes'
 
 const PORT = 8080;
 /*
@@ -38,10 +41,14 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/', backendRoutes);
+app.use('user/', userRoutes);
+app.use('address/', addressRoutes);
+app.use('comment/', commentRoutes);
 
 app.listen(PORT, function () {
     console.log("Server should be running on Port: " + PORT);
 });
+
 
 module.exports = app;
 
