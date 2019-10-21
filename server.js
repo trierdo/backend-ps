@@ -5,9 +5,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const backendRoutes = express.Router();
-import {userRoutes} from './backendroutes/userRoutes'
-import {addressRoutes} from './backendroutes/addressRoutes'
-import {commentRoutes} from './backendroutes/commentRoutes'
+const userRoutes = require('./backendroutes/userRoutes');
+const addressRoutes = require('./backendroutes/addressRoutes');
+const commentRoutes = require('./backendroutes/commentRoutes');
 
 const PORT = process.env.PORT;
 /*
