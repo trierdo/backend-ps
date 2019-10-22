@@ -1,6 +1,7 @@
 const express = require('express');
 const userRoutes = express.Router();
 const User = require("../models/user.model");
+const mongoose = require('mongoose');
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
@@ -55,6 +56,7 @@ userRoutes.route("/login").post((req, res) => {
         const salt = bcrypt.genSaltSync(bcryptSalt);
         const hashPass = bcrypt.hashSync(user_password, salt);
         User.create({
+            _id: new mongoose.mongo.ObjectId(),
             user_name,
             user_password: hashPass,
             user_first_name,
