@@ -33,6 +33,7 @@ commentRoutes.route('/user/getAllComments/:userID').get((req, res) => {
     const ref_product = ObjectId(req.body.ref_product);
    
     Comment.create({
+        _id: new mongoose.mongo.ObjectId(),
         title,
         description,
         ref_user,

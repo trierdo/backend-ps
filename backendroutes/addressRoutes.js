@@ -33,6 +33,7 @@ addressRoutes.route('/getAddressData/:userID').get((req, res) => {
         return res.status(401).json({ 'error': 'all fields must be filled' });
     }
     Address.create({
+        _id: new mongoose.mongo.ObjectId(),
         type,
         street,
         zip_code,
