@@ -13,6 +13,9 @@ let Address = new Schema({
     street: {
         type: String
     },
+    number: {
+        type: String
+    },
     zip_code: {
         type: String
     },
