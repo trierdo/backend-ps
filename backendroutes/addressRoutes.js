@@ -70,10 +70,11 @@ addressRoutes.route('/getAddressData/:userId').get((req, res) => {
 });
 
   // Bisher gibt es nur eine Addresse für einen User
-  addressRoutes.route('/editAddress/:userID').post((req, res) => {
+  addressRoutes.route('/editAddress/:addressID').post((req, res) => {
     const { type, street, zip_code, city, iso_country_code, pickup_station_id, pickup_ident_no } = req.body;
-    console.log("log: " + req.params.userID);
-    Address.update({ref_user: ObjectId(req.params.userID)}, { $set: {type, street, zip_code, city, iso_country_code, pickup_station_id, pickup_ident_no }})
+    console.log("update Address", req.body)
+    console.log("log: " + req.params.addressID);
+    Address.update({_id: ObjectId(req.params.addressID)}, { $set: {type, street, zip_code, city, iso_country_code, pickup_station_id, pickup_ident_no }})
     .then((response) => {
         res.status(200).json({'response': response});
     })
