@@ -26,6 +26,20 @@ productRoutes.route('/').get(function (req, res) {
     });
 });
 
+productRoutes.route('/searchProducts/:input').get(function (req, res) {
+    console.log("got a request",req.params.input);
+    const search = req.params.input;
+    const newSearch = new RegExp(search, "i");
+    console.log(newSearch)
+    Product.find({title: newSearch}, function(err, product) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(product);
+        }
+      });
+});
+
 //C: creat a new product
 
 productRoutes.route('/add').post(function (req, res) {
