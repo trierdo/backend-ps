@@ -76,6 +76,7 @@ userRoutes.route("/login").post((req, res) => {
     User.findOne({"user_name": req.params.userName})
     .then(userDataFromDB => {
         console.log(userDataFromDB);
+        
         res.status(200).json({'userdata': userDataFromDB});
     })
     .catch(error => {
@@ -87,7 +88,9 @@ userRoutes.route("/login").post((req, res) => {
   userRoutes.route('/editUser/:userID').post((req, res) => {
     const { user_name, user_first_name, user_last_name, user_password, user_email, user_phone } = req.body;
     console.log("log: " + req.params.userID);
-    User.update({_id: req.params.userID}, { $set: {user_name, user_first_name, user_last_name, user_password, user_email, user_phone }})
+    const salt = bcrypt.genSaltSync(bcryptSalt);
+    const hashPass = bcrypt.hashSync(user_password, salt);
+    User.updateOne({_id: req.params.userID}, { $set: {user_name, user_first_name, user_last_name, user_password:hashPass, user_email, user_phone }})
     .then((response) => {
         res.status(200).json({'response': response});
     })
