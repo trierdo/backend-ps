@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const orderRoutes = express.Router();
 let Order = require('../models/order.model');
+const ObjectId = require('mongodb').ObjectID;
+const mongoose = require('mongoose');
 
 // we need cors because JavaScript could otherwise not make requests to other servers than the one that delivered the JavaScript 
 
@@ -29,15 +31,29 @@ orderRoutes.route('/').get(function (req, res) {
 //C: creat a new order
 
 orderRoutes.route('/add').post(function (req, res) {
+    const order_id = "od" + Math.random().toString().slice(2);
+    const description = req.body.description;
+    const total_price = req.body.total_price;
+    const product_list = req.body.product_list;
+    const ref_address = req.body.ref_address;
+    const ref_user = req.body.ref_user;
     console.log("Reqest to save this order:" + JSON.stringify(req.body));
-    let order = new Order(req.body);
-    order.save()
-        .then(order => {
-            res.status(200).json({ 'order': 'order added successfully' });
+
+    Order.create({
+        _id: new mongoose.mongo.ObjectId(),
+        order_id,
+        description,
+        total_price,
+        product_list,
+        ref_address,
+        ref_user
         })
-        .catch(err => {
-            res.status(400).send('adding new order failed');
-        });
+        .then(() => { return res.status(200).json({ 'success': 'order added successfully'});
+
+          })
+      .catch(error => {
+        console.log(error);
+  })
 });
 
 //R: read one order defined be the id of the order
